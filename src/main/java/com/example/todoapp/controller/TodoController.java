@@ -2,43 +2,46 @@ package com.example.todoapp.controller;
 
 import com.example.todoapp.dto.TodoDto;
 import com.example.todoapp.services.TodoService;
-import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
+// DİKKAT: doğru base path
 @RestController
 @RequestMapping("/api/todos")
-@RequiredArgsConstructor
 public class TodoController {
 
-    private final TodoService service;
+    private final TodoService todoService;
 
-    @PostMapping
-    public ResponseEntity<TodoDto> create(@Valid @RequestBody TodoDto dto) {
-        return ResponseEntity.status(201).body(service.create(dto));
+    public TodoController(TodoService todoService) {
+        this.todoService = todoService;
     }
 
     @GetMapping
-    public ResponseEntity<List<TodoDto>> getAll() {
-        return ResponseEntity.ok(service.getAll());
+    public ResponseEntity<?> getAll() {
+        return ResponseEntity.ok(todoService.getAll());
     }
 
+    // <<< ÖNEMLİ KISIM >>>
     @GetMapping("/{id}")
-    public ResponseEntity<TodoDto> getById(@PathVariable Long id) {
-        return ResponseEntity.ok(service.getById(id));
+    public ResponseEntity<TodoDto> getById(@PathVariable("id") Long id) {
+        return ResponseEntity.ok(todoService.getById(id));
+    }
+    // <<< ÖNEMLİ KISIM >>>
+
+    @PostMapping
+    public ResponseEntity<TodoDto> create(@RequestBody TodoDto dto) {
+        return ResponseEntity.ok(todoService.create(dto));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<TodoDto> update(@PathVariable Long id, @Valid @RequestBody TodoDto dto) {
-        return ResponseEntity.ok(service.update(id, dto));
+    public ResponseEntity<TodoDto> update(@PathVariable("id") Long id,
+                                          @RequestBody TodoDto dto) {
+        return ResponseEntity.ok(todoService.update(id, dto));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
-        service.delete(id);
+    public ResponseEntity<Void> delete(@PathVariable("id") Long id) {
+        todoService.delete(id);
         return ResponseEntity.noContent().build();
     }
 }

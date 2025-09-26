@@ -1,4 +1,4 @@
-package com.example.todoapp.services;
+package com.example.todoapp.services.impl;
 
 import com.example.todoapp.dto.TodoDto;
 import com.example.todoapp.entity.Todo;
@@ -6,6 +6,7 @@ import com.example.todoapp.exception.DuplicateException;
 import com.example.todoapp.exception.NotFoundException;
 import com.example.todoapp.mapper.TodoMapper;
 import com.example.todoapp.repository.TodoRepository;
+import com.example.todoapp.services.TodoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
