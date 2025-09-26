@@ -5,7 +5,6 @@ import com.example.todoapp.services.TodoService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-// DİKKAT: doğru base path
 @RestController
 @RequestMapping("/api/todos")
 public class TodoController {
@@ -21,12 +20,10 @@ public class TodoController {
         return ResponseEntity.ok(todoService.getAll());
     }
 
-    // <<< ÖNEMLİ KISIM >>>
     @GetMapping("/{id}")
     public ResponseEntity<TodoDto> getById(@PathVariable("id") Long id) {
         return ResponseEntity.ok(todoService.getById(id));
     }
-    // <<< ÖNEMLİ KISIM >>>
 
     @PostMapping
     public ResponseEntity<TodoDto> create(@RequestBody TodoDto dto) {
