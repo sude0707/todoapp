@@ -1,6 +1,7 @@
 package com.example.todoapp.controller;
 
 import com.example.todoapp.dto.TodoDto;
+import com.example.todoapp.request.TodoCreateRequest;
 import com.example.todoapp.services.TodoService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,8 +27,8 @@ public class TodoController {
     }
 
     @PostMapping
-    public ResponseEntity<TodoDto> create(@RequestBody TodoDto dto) {
-        return ResponseEntity.ok(todoService.create(dto));
+    public ResponseEntity<TodoDto> create(@RequestBody TodoCreateRequest request) {
+        return ResponseEntity.ok(todoService.create(request));
     }
 
     @PutMapping("/{id}")

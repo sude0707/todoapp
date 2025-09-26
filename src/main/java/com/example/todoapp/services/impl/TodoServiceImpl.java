@@ -6,6 +6,7 @@ import com.example.todoapp.exception.DuplicateException;
 import com.example.todoapp.exception.NotFoundException;
 import com.example.todoapp.mapper.TodoMapper;
 import com.example.todoapp.repository.TodoRepository;
+import com.example.todoapp.request.TodoCreateRequest;
 import com.example.todoapp.services.TodoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -22,11 +23,11 @@ public class TodoServiceImpl implements TodoService {
     private final TodoMapper mapper;
 
     @Override
-    public TodoDto create(TodoDto dto) {
-        if (repo.existsByTitle(dto.getTitle())) {
-            throw new DuplicateException("Aynı başlıkta todo zaten var: " + dto.getTitle());
+    public TodoDto create(TodoCreateRequest request) {
+        if (repo.existsByTitle(request.title())) {
+            throw new DuplicateException("Aynı başlıkta todo zaten var: " + request.title());
         }
-        Todo saved = repo.save(mapper.toEntity(dto));
+        Todo saved = repo.save(mapper.toEntity(request));
         return mapper.toDto(saved);
     }
 
