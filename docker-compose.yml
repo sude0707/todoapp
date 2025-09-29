@@ -28,7 +28,6 @@ services:
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: 12345
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
-      # SPRING_PROFILES_ACTIVE: docker   # profil kullanıyorsan aç
     ports:
       - "8080:8080"
     restart: unless-stopped
