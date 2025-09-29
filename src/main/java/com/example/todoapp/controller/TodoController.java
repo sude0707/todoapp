@@ -2,6 +2,7 @@ package com.example.todoapp.controller;
 
 import com.example.todoapp.dto.TodoDto;
 import com.example.todoapp.request.TodoCreateRequest;
+import com.example.todoapp.request.TodoUpdateRequest;
 import com.example.todoapp.services.TodoService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
@@ -32,10 +33,9 @@ public class TodoController {
         return ResponseEntity.ok(todoService.create(request));
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<TodoDto> update(@PathVariable("id") Long id,
-                                          @RequestBody TodoDto dto) {
-        return ResponseEntity.ok(todoService.update(id, dto));
+    @PutMapping("/title-descr-completed")
+    public ResponseEntity<TodoDto> updateTitleDescrCompleted(@Valid @RequestBody TodoUpdateRequest request) {
+        return ResponseEntity.ok(todoService.update(request));
     }
 
     @DeleteMapping("/{id}")

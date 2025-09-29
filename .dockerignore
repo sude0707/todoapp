@@ -1,0 +1,13 @@
+.git
+.gitignore
+.gitattributes
+.idea
+*.iml
+
+target
+out
+
+.DS_Store
+
+*.log
+logs

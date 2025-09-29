@@ -21,10 +21,14 @@ public class Todo {
     @Column(nullable = false)
     private String title;
 
+
     private String description;
 
     @Column(nullable = false)
+    @Builder.Default
     private boolean completed = false;
+
+
 
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)
@@ -33,4 +37,6 @@ public class Todo {
     @UpdateTimestamp
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
+
+
 }
